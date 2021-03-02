@@ -11,3 +11,4 @@ export const FILTER_ITEMS = "FILTER_ITEMS";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const CLEAR_STATUS = "CLEAR_STATUS";
 export const SET_STATUS = "SET_STATUS";
+export const SET_CURRENT = "SET_CURRENT";

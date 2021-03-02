@@ -6576,7 +6576,7 @@ body {
   background: #f6f6f6;
   margin-top: 10vh;
   border-radius: 5px;
-  box-shadow: 0px 4px 12px rgba(77, 75, 75, 0.1); }
+  box-shadow: 0px 4px 12px rgba(37, 37, 37, 0.1); }
 
 .nav {
   position: fixed;
@@ -6604,7 +6604,7 @@ body {
       cursor: pointer; }
       .nav ul li:hover span {
         opacity: 1;
-        transition: ease-in opacity 0.1s; }
+        transition: ease-in opacity 0.2s; }
       .nav ul li span {
         position: absolute;
         top: 0;
@@ -6682,13 +6682,12 @@ body {
   width: 380px;
   background: #ffffff;
   height: 100vh;
-  padding: 20px;
   box-sizing: border-box; }
-  .addItem .input-field {
+  .addItem form .input-field {
     margin-bottom: 50px; }
-  .addItem .buttons {
+  .addItem form .buttons {
     text-align: center; }
-    .addItem .buttons button {
+    .addItem form .buttons button {
       padding: 20px;
       margin: 0px 10px;
       border: 0px;
@@ -6696,10 +6695,30 @@ body {
       font-weight: 600;
       border-radius: 12px;
       cursor: pointer; }
-      .addItem .buttons button:first-child {
+      .addItem form .buttons button:first-child {
         color: #000; }
-      .addItem .buttons button:nth-child(2) {
+      .addItem form .buttons button:nth-child(2) {
         background: #f9a109; }
+  .addItem form .category .suggestions {
+    margin: 0;
+    width: 100%;
+    background: #555;
+    border-radius: 12px;
+    padding: 10px 5px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.04);
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    max-height: 150px;
+    box-sizing: border-box; }
+    .addItem form .category .suggestions li {
+      padding: 15px 30px;
+      border-radius: 12px;
+      color: #828282;
+      font-weight: 500; }
+      .addItem form .category .suggestions li:hover {
+        background: #f2f2f2;
+        color: #34333a;
+        cursor: pointer; }
   .addItem h5 {
     font-weight: 600; }
 
