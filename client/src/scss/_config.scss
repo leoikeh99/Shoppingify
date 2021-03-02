@@ -1,0 +1,27 @@
+$background: #fafafe;
+$background2: #ffffff;
+$background3: #fff0de;
+$background4: #80485b;
+$secondary-color: #f9a109;
+$danger: #f44336;
+$iconColor: #c1c1c4;
+
+//keyframes
+
+@keyframes slideIn {
+  0% {
+    right: -380px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: -380px;
+  }
+}

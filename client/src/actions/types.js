@@ -1,0 +1,13 @@
+export const AUTH = "AUTH";
+export const AUTH_FAIL = "AUTH_FAIL";
+export const GET_USER = "GET_USER";
+export const GET_USER_FAIL = "GET_USER_FAIL";
+export const SET_LOADER = "SET_LOADER";
+export const SET_LOADER2 = "SET_LOADER2";
+export const CLEAR_ERROR = "CLEAR_ERROR";
+export const ADD_ITEM = "ADD_ITEM";
+export const GET_ITEMS = "GET_ITEMS";
+export const FILTER_ITEMS = "FILTER_ITEMS";
+export const CLEAR_FILTER = "CLEAR_FILTER";
+export const CLEAR_STATUS = "CLEAR_STATUS";
+export const SET_STATUS = "SET_STATUS";
