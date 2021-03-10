@@ -50,6 +50,7 @@ export default (state = initialState, action) => {
         loader2: false,
         user: null,
         token: null,
+        loader: false,
       };
 
     case SET_LOADER:

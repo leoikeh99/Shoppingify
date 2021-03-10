@@ -6,6 +6,7 @@ import {
   getItems,
   filterItems,
   clearFilter,
+  setCurrent,
 } from "../../../actions/itemActions";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
@@ -16,9 +17,11 @@ const Items = ({
   items: { items, filtered, loader },
   filterItems,
   clearFilter,
+  setCurrent,
 }) => {
   useEffect(() => {
     getItems();
+    clearFilter();
   }, []);
 
   const search = (e) => {
@@ -52,25 +55,37 @@ const Items = ({
 
           <div className="other">
             <TransitionGroup>
-              {!filtered
-                ? items.map((item) => (
-                    <CSSTransition
+              {!filtered ? (
+                items.map((item) => (
+                  <CSSTransition key={uuidv4()} timeout={500} classNames="item">
+                    <Category
                       key={uuidv4()}
-                      timeout={500}
-                      classNames="item"
-                    >
-                      <Category key={uuidv4()} category={item} />
-                    </CSSTransition>
-                  ))
-                : filtered.map((item) => (
-                    <CSSTransition
-                      key={uuidv4()}
-                      timeout={500}
-                      classNames="item"
-                    >
-                      <Category key={uuidv4()} category={item} />
-                    </CSSTransition>
-                  ))}
+                      category={item}
+                      setCurrent={setCurrent}
+                    />
+                  </CSSTransition>
+                ))
+              ) : (
+                <Fragment>
+                  {filtered.length === 0 ? (
+                    <div style={{ marginTop: "30px" }}>No matches</div>
+                  ) : (
+                    filtered.map((item) => (
+                      <CSSTransition
+                        key={uuidv4()}
+                        timeout={500}
+                        classNames="item"
+                      >
+                        <Category
+                          key={uuidv4()}
+                          category={item}
+                          setCurrent={setCurrent}
+                        />
+                      </CSSTransition>
+                    ))
+                  )}
+                </Fragment>
+              )}
             </TransitionGroup>
           </div>
         </Fragment>
@@ -85,11 +100,15 @@ Items.propTypes = {
   filtered: PropTypes.object,
   filterItems: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
-  loader: PropTypes.bool.isRequired,
+  setCurrent: PropTypes.func.isRequired,
+  loader: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({ items: state.items });
 
-export default connect(mapStateToProps, { getItems, filterItems, clearFilter })(
-  Items
-);
+export default connect(mapStateToProps, {
+  getItems,
+  filterItems,
+  clearFilter,
+  setCurrent,
+})(Items);

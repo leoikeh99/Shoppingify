@@ -5,6 +5,8 @@ import {
   CLEAR_FILTER,
   CLEAR_STATUS,
   SET_LOADER,
+  SET_CURRENT,
+  CLEAR_CURRENT,
 } from "../actions/types";
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
   filtered: null,
   status: null,
   loader: false,
+  current: null,
 };
 
 export default (state = initialState, action) => {
@@ -82,6 +85,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         status: null,
+      };
+
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: { data: action.payload.data, type: action.payload.type },
+      };
+
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null,
       };
 
     default:

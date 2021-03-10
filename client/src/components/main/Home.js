@@ -5,6 +5,8 @@ import Items from "./items/Items";
 import History from "./history/History";
 import Stats from "./stats/Stats";
 import AddItem from "./items/AddItem";
+import ViewItem from "./items/ViewItem";
+import EditItem from "./items/EditItem";
 import { getUser } from "../../actions/authActions";
 import { clearStatus } from "../../actions/itemActions";
 import { connect } from "react-redux";
@@ -49,6 +51,8 @@ const Home = ({ getUser, clearStatus, status }) => {
       </div>
       <SideBar setAnim1={setAnim1} />
       <AddItem anim1={anim1} setAnim1={setAnim1} />
+      <ViewItem />
+      <EditItem />
     </div>
   );
 };

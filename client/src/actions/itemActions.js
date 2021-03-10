@@ -2,10 +2,12 @@ import axios from "axios";
 import setAuthToken from "../functions/setAuthToken";
 import {
   ADD_ITEM,
+  CLEAR_CURRENT,
   CLEAR_FILTER,
   CLEAR_STATUS,
   FILTER_ITEMS,
   GET_ITEMS,
+  SET_CURRENT,
   SET_LOADER,
 } from "./types";
 
@@ -47,4 +49,12 @@ export const clearFilter = () => {
 
 export const clearStatus = () => {
   return { type: CLEAR_STATUS };
+};
+
+export const setCurrent = (data, type) => {
+  return { type: SET_CURRENT, payload: { data, type } };
+};
+
+export const clearCurrent = () => {
+  return { type: CLEAR_CURRENT };
 };
