@@ -8,6 +8,9 @@ const ViewItem = ({ current }) => {
     const viewItem = document.querySelector(".viewItem");
     if (current && current.type === "view") {
       viewItem.style.animation = "slideIn 0.1s ease-in forwards";
+    } else {
+      viewItem.style.right = "-380px";
+      viewItem.style.animation = "none";
     }
   }, [current]);
 
@@ -55,6 +58,10 @@ const ViewItem = ({ current }) => {
       </SimpleBar>
     </div>
   );
+};
+
+ViewItem.propTypes = {
+  current: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({ current: state.items.current });

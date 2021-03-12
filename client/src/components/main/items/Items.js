@@ -54,39 +54,29 @@ const Items = ({
           </div>
 
           <div className="other">
-            <TransitionGroup>
-              {!filtered ? (
-                items.map((item) => (
-                  <CSSTransition key={uuidv4()} timeout={500} classNames="item">
+            {!filtered ? (
+              items.map((item) => (
+                <Category
+                  key={uuidv4()}
+                  category={item}
+                  setCurrent={setCurrent}
+                />
+              ))
+            ) : (
+              <Fragment>
+                {filtered.length === 0 ? (
+                  <div style={{ marginTop: "30px" }}>No matches</div>
+                ) : (
+                  filtered.map((item) => (
                     <Category
                       key={uuidv4()}
                       category={item}
                       setCurrent={setCurrent}
                     />
-                  </CSSTransition>
-                ))
-              ) : (
-                <Fragment>
-                  {filtered.length === 0 ? (
-                    <div style={{ marginTop: "30px" }}>No matches</div>
-                  ) : (
-                    filtered.map((item) => (
-                      <CSSTransition
-                        key={uuidv4()}
-                        timeout={500}
-                        classNames="item"
-                      >
-                        <Category
-                          key={uuidv4()}
-                          category={item}
-                          setCurrent={setCurrent}
-                        />
-                      </CSSTransition>
-                    ))
-                  )}
-                </Fragment>
-              )}
-            </TransitionGroup>
+                  ))
+                )}
+              </Fragment>
+            )}
           </div>
         </Fragment>
       )}

@@ -5,6 +5,7 @@ import {
   CLEAR_CURRENT,
   CLEAR_FILTER,
   CLEAR_STATUS,
+  EDIT_ITEM,
   FILTER_ITEMS,
   GET_ITEMS,
   SET_CURRENT,
@@ -15,11 +16,10 @@ export const addItem = (item) => async (dispatch) => {
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
-  try {
-    const config = { headers: { "Content-Type": "application/json" } };
 
+  const config = { headers: { "Content-Type": "application/json" } };
+  try {
     const res = await axios.post("/api/items", item, config);
-    console.log(res.data);
     dispatch({ type: ADD_ITEM, payload: res.data });
   } catch (err) {
     console.error(err);
@@ -34,6 +34,19 @@ export const getItems = () => async (dispatch) => {
     dispatch({ type: SET_LOADER });
     const res = await axios.get("/api/items");
     dispatch({ type: GET_ITEMS, payload: res.data });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const editItem = (data, id) => async (dispatch) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+  const config = { headers: { "Content-Type": "application/json" } };
+  try {
+    const res = await axios.put(`/api/items/${id}`, data, config);
+    dispatch({ type: EDIT_ITEM, payload: res.data });
   } catch (err) {
     console.error(err);
   }

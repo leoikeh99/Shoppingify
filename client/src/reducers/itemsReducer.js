@@ -7,6 +7,7 @@ import {
   SET_LOADER,
   SET_CURRENT,
   CLEAR_CURRENT,
+  EDIT_ITEM,
 } from "../actions/types";
 
 const initialState = {
@@ -51,6 +52,21 @@ export default (state = initialState, action) => {
               { name: action.payload.category, items: [action.payload] },
             ],
         status: { color: "#00bfa5", msg: "Item has been added" },
+      };
+
+    case EDIT_ITEM:
+      return {
+        ...state,
+        items: action.payload.categories.map((category) => {
+          const obj = {
+            name: category.category,
+            items: action.payload.items.filter(
+              (item) => category.lowercase === item.category.toLowerCase()
+            ),
+          };
+          return obj;
+        }),
+        status: { color: "#00bfa5", msg: "Item has been updated" },
       };
 
     case FILTER_ITEMS:

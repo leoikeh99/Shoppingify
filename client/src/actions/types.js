@@ -7,6 +7,7 @@ export const SET_LOADER2 = "SET_LOADER2";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 export const ADD_ITEM = "ADD_ITEM";
 export const GET_ITEMS = "GET_ITEMS";
+export const EDIT_ITEM = "EDIT_ITEM";
 export const FILTER_ITEMS = "FILTER_ITEMS";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const CLEAR_STATUS = "CLEAR_STATUS";

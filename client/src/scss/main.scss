@@ -319,6 +319,7 @@ body {
   background: $background2;
   height: 100vh;
   box-sizing: border-box;
+  z-index: 2;
 
   .image {
     width: 100%;
@@ -369,11 +370,27 @@ body {
 .editItem {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -380px;
   width: 380px;
   background: $background2;
   height: 100vh;
   box-sizing: border-box;
+  z-index: 2;
+
+  .input-field {
+    margin-bottom: 40px;
+  }
+
+  button {
+    padding: 20px;
+    margin: 0px 5px;
+    border: 0px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    background: $secondary-color;
+  }
 }
 
 .back {
