@@ -8,8 +8,10 @@ import {
   EDIT_ITEM,
   FILTER_ITEMS,
   GET_ITEMS,
+  DELETE_ITEM,
   SET_CURRENT,
   SET_LOADER,
+  SET_LOADER2,
 } from "./types";
 
 export const addItem = (item) => async (dispatch) => {
@@ -19,9 +21,11 @@ export const addItem = (item) => async (dispatch) => {
 
   const config = { headers: { "Content-Type": "application/json" } };
   try {
+    dispatch({ type: SET_LOADER2, payload: "add" });
     const res = await axios.post("/api/items", item, config);
     dispatch({ type: ADD_ITEM, payload: res.data });
   } catch (err) {
+    dispatch({ type: SET_LOADER2, payload: false });
     console.error(err);
   }
 };
@@ -45,9 +49,25 @@ export const editItem = (data, id) => async (dispatch) => {
   }
   const config = { headers: { "Content-Type": "application/json" } };
   try {
+    dispatch({ type: SET_LOADER2, payload: "edit" });
     const res = await axios.put(`/api/items/${id}`, data, config);
     dispatch({ type: EDIT_ITEM, payload: res.data });
   } catch (err) {
+    dispatch({ type: SET_LOADER2, payload: false });
+    console.error(err);
+  }
+};
+
+export const deleteItem = (id) => async (dispatch) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+  try {
+    dispatch({ type: SET_LOADER2, payload: "delete" });
+    const res = await axios.delete(`/api/items/${id}`);
+    dispatch({ type: DELETE_ITEM, payload: res.data });
+  } catch (err) {
+    dispatch({ type: SET_LOADER2, payload: false });
     console.error(err);
   }
 };

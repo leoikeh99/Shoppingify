@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import Category from "./Category";
 import Spinner from "../../layout/Spinner";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import {
   getItems,
   filterItems,
@@ -18,6 +17,7 @@ const Items = ({
   filterItems,
   clearFilter,
   setCurrent,
+  setAnim1,
 }) => {
   useEffect(() => {
     getItems();
@@ -60,6 +60,7 @@ const Items = ({
                   key={uuidv4()}
                   category={item}
                   setCurrent={setCurrent}
+                  setAnim1={setAnim1}
                 />
               ))
             ) : (
@@ -72,6 +73,7 @@ const Items = ({
                       key={uuidv4()}
                       category={item}
                       setCurrent={setCurrent}
+                      setAnim1={setAnim1}
                     />
                   ))
                 )}
@@ -87,11 +89,9 @@ const Items = ({
 Items.propTypes = {
   getItems: PropTypes.func.isRequired,
   items: PropTypes.object,
-  filtered: PropTypes.object,
   filterItems: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
   setCurrent: PropTypes.func.isRequired,
-  loader: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({ items: state.items });

@@ -1,2 +1,112 @@
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 952px) {
+  .itemsView {
+    .top {
+      display: block !important;
+      h5 {
+        margin-bottom: 15px;
+      }
+
+      input {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .main {
+    padding-right: 0px !important;
+  }
+
+  .slideOut {
+    animation: slideOut 0.2s ease-in forwards;
+  }
+  .slideIn {
+    animation: slideIn 0.2s ease-in forwards;
+  }
+
+  .itemsView {
+    .other {
+      .category {
+        ul {
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(200px, 1fr)
+          ) !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 458px) {
+  .sideBar,
+  .viewItem,
+  .editItem,
+  .addItem {
+    width: 305px !important;
+  }
+
+  .nav {
+    width: 50px !important;
+
+    ul {
+      padding: 0;
+
+      li {
+        position: relative;
+        width: 50px !important;
+      }
+    }
+  }
+
+  .main {
+    padding-left: 48px !important;
+  }
+
+  .container2 {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  #sideBar,
+  #viewItem,
+  #editItem,
+  #addItem {
+    width: 265px !important;
+  }
+
+  .sideBar {
+    .top {
+      p {
+        font-size: 0.9rem !important;
+      }
+      button {
+        padding: 10px 20px !important;
+      }
+      .image {
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 990px) {
+  #toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left: 7%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .itemsView {
+    .other {
+      .edit {
+        opacity: 1 !important;
+      }
+    }
+  }
 }

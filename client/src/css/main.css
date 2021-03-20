@@ -11,6 +11,20 @@
   100% {
     right: -380px; } }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    margin-left: -5px; }
+  100% {
+    opacity: 1;
+    margin-left: 0px; } }
+
+@keyframes strike {
+  0% {
+    width: 0; }
+  100% {
+    width: 70%; } }
+
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6538,6 +6552,66 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
+@media screen and (max-width: 952px) {
+  .itemsView .top {
+    display: block !important; }
+    .itemsView .top h5 {
+      margin-bottom: 15px; }
+    .itemsView .top input {
+      width: 200px; } }
+
+@media screen and (max-width: 896px) {
+  .main {
+    padding-right: 0px !important; }
+  .slideOut {
+    animation: slideOut 0.2s ease-in forwards; }
+  .slideIn {
+    animation: slideIn 0.2s ease-in forwards; }
+  .itemsView .other .category ul {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important; } }
+
+@media screen and (max-width: 458px) {
+  .sideBar,
+  .viewItem,
+  .editItem,
+  .addItem {
+    width: 305px !important; }
+  .nav {
+    width: 50px !important; }
+    .nav ul {
+      padding: 0; }
+      .nav ul li {
+        position: relative;
+        width: 50px !important; }
+  .main {
+    padding-left: 48px !important; }
+  .container2 {
+    width: 90% !important; } }
+
+@media screen and (max-width: 340px) {
+  #sideBar,
+  #viewItem,
+  #editItem,
+  #addItem {
+    width: 265px !important; }
+  .sideBar .top p {
+    font-size: 0.9rem !important; }
+  .sideBar .top button {
+    padding: 10px 20px !important; }
+  .sideBar .top .image {
+    margin-left: -10px; } }
+
+@media screen and (min-width: 990px) {
+  #toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left: 7%; } }
+
+@media screen and (max-width: 550px) {
+  .itemsView .other .edit {
+    opacity: 1 !important; } }
+
 body {
   background: #fafafe;
   font-family: "Quicksand", sans-serif; }
@@ -6555,22 +6629,25 @@ body {
   width: 90%;
   margin: auto; }
 
+.container2 {
+  width: 80%;
+  margin: auto; }
+
 .center {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.spaceOut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
 
 .simplebar-scrollbar::before {
   border-radius: 0; }
 
 .danger {
   background: #f44336; }
-
-#toast-container {
-  top: auto !important;
-  right: auto !important;
-  bottom: 10%;
-  left: 7%; }
 
 .auth {
   max-width: 400px;
@@ -6622,7 +6699,7 @@ body {
         opacity: 0; }
       .nav ul li .show {
         opacity: 1; }
-  .nav .cart {
+  .nav .cartAmount {
     color: #fff;
     background: #f9a109;
     height: 40px;
@@ -6630,7 +6707,8 @@ body {
     border-radius: 20px;
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    cursor: pointer; }
 
 .active2 {
   border-left: 5px solid #f9a109; }
@@ -6646,18 +6724,14 @@ body {
   top: 0;
   right: 0;
   width: 380px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   background: #fff0de;
-  height: 100vh;
-  padding-top: 30px; }
+  height: 100vh; }
   .sideBar .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #80485b;
-    width: 80%;
+    width: 100%;
     border-radius: 24px;
     padding: 10px;
     box-sizing: border-box;
@@ -6679,6 +6753,58 @@ body {
         background: #fff;
         font-weight: 600;
         cursor: pointer; }
+  .sideBar .body {
+    width: 100%; }
+    .sideBar .body h5 {
+      font-weight: 600;
+      color: #34333a; }
+    .sideBar .body i {
+      margin-top: 10px;
+      color: #000;
+      cursor: pointer; }
+  .sideBar .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px 0px;
+    background: #ffffff;
+    width: 100%; }
+    .sideBar .bottom .cover {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid #f9a109;
+      height: 50px;
+      border-radius: 12px; }
+      .sideBar .bottom .cover input {
+        border: 0;
+        margin-bottom: -1px;
+        height: 46px;
+        border-bottom-left-radius: 12px;
+        padding: 0px 15px; }
+      .sideBar .bottom .cover button {
+        padding: 0px 20px;
+        background: #f9a109;
+        color: #fff;
+        border-radius: 12px;
+        border: 0;
+        height: 50px; }
+    .sideBar .bottom .complete {
+      padding: 15px 20px;
+      background: #56ccf2;
+      border: 0;
+      border-radius: 12px;
+      color: #fff;
+      margin: 0px 10px;
+      cursor: pointer;
+      font-weight: 600; }
+    .sideBar .bottom .cancel {
+      padding: 15px 20px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      background: #eee; }
 
 .addItem {
   position: fixed;
@@ -6688,6 +6814,12 @@ body {
   background: #ffffff;
   height: 100vh;
   box-sizing: border-box; }
+  .addItem .container {
+    position: relative; }
+    .addItem .container .loader {
+      position: absolute;
+      top: -20px;
+      right: 0; }
   .addItem form .input-field {
     margin-bottom: 50px; }
   .addItem form .buttons {
@@ -6701,7 +6833,8 @@ body {
       border-radius: 12px;
       cursor: pointer; }
       .addItem form .buttons button:first-child {
-        color: #000; }
+        color: #000;
+        background: #eee; }
       .addItem form .buttons button:nth-child(2) {
         background: #f9a109; }
   .addItem form .category .suggestions {
@@ -6748,6 +6881,7 @@ body {
     .itemsView .other .category ul li {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       box-sizing: border-box;
       font-weight: 600;
       padding: 15px 10px;
@@ -6765,6 +6899,18 @@ body {
         cursor: pointer; }
       .itemsView .other .category ul li:hover .edit {
         opacity: 1; }
+  .itemsView .other .category button {
+    background: #ffffff;
+    padding: 12px;
+    border: 0px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 12px rgba(66, 65, 65, 0.05);
+    cursor: pointer; }
+    .itemsView .other .category button i {
+      color: #c1c1c4;
+      margin-left: 20px; }
 
 .viewItem {
   position: fixed;
@@ -6797,6 +6943,7 @@ body {
     left: 0;
     bottom: 0;
     padding: 10px;
+    padding-bottom: 20px;
     background: #ffffff; }
     .viewItem .buttons button {
       padding: 20px;
@@ -6810,6 +6957,12 @@ body {
         color: #000; }
       .viewItem .buttons button:nth-child(2) {
         background: #f9a109; }
+  .viewItem .container {
+    position: relative; }
+    .viewItem .container .loader {
+      position: absolute;
+      top: -25px;
+      right: 0; }
 
 .editItem {
   position: fixed;
@@ -6820,6 +6973,14 @@ body {
   height: 100vh;
   box-sizing: border-box;
   z-index: 2; }
+  .editItem .container {
+    position: relative; }
+    .editItem .container .loader {
+      position: absolute;
+      top: 5px;
+      right: 0; }
+  .editItem h5 {
+    font-weight: 600; }
   .editItem .input-field {
     margin-bottom: 40px; }
   .editItem button {
@@ -6839,6 +7000,63 @@ body {
   color: #f9a109;
   cursor: pointer;
   max-width: 80px; }
+
+.cart {
+  margin-bottom: 120px; }
+  .cart p {
+    color: #828282;
+    margin: 5px 0px; }
+  .cart .cartItem {
+    margin-bottom: 10px; }
+    .cart .cartItem p {
+      margin: 7px 0px;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.2rem; }
+    .cart .cartItem .name {
+      color: #000;
+      font-weight: 600;
+      font-size: 1.2rem; }
+    .cart .cartItem .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 3px;
+      align-items: center; }
+    .cart .cartItem .quantity {
+      border-radius: 24px;
+      border: 2px solid #f9a109;
+      color: #f9a109;
+      font-size: 0.7rem;
+      font-weight: 600;
+      width: 50px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+  .cart .edit {
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin-left: -5px;
+    animation: 0.4s ease-out fadeIn forwards; }
+    .cart .edit .delete {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #f9a109;
+      box-sizing: border-box;
+      width: 35px;
+      margin-right: 2px; }
+      .cart .edit .delete i {
+        color: #fff;
+        margin: 0; }
+    .cart .edit i {
+      color: #f9a109;
+      margin: 0px; }
 
 .item-enter {
   opacity: 0; }

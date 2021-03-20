@@ -1,6 +1,18 @@
 import React, { Fragment } from "react";
+import { addToCart } from "../../../actions/cartActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Category = ({ category, setCurrent }) => {
+const Category = ({ category, setCurrent, addToCart, setAnim1 }) => {
+  const add = (data, category) => {
+    addToCart({
+      name: data.name,
+      quantity: 1,
+      cleared: false,
+      itemId: data._id,
+      category,
+    });
+  };
   return (
     <div className="category">
       <h6>{category.name}</h6>
@@ -16,16 +28,31 @@ const Category = ({ category, setCurrent }) => {
                 >
                   edit
                 </i>
-                <i className="material-icons">add</i>
+                <i
+                  className="material-icons"
+                  onClick={() => add(item, category.name)}
+                >
+                  add
+                </i>
               </Fragment>
             </li>
           ))}
         </ul>
       ) : (
-        <button>Add an item</button>
+        <button className="spaceOut" onClick={() => setAnim1(category.name)}>
+          Add an item <i className="material-icons"> add </i>
+        </button>
       )}
     </div>
   );
 };
 
-export default Category;
+Category.propTypes = {
+  cart: PropTypes.object.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({ cart: state.cart });
+
+export default connect(mapStateToProps, { addToCart })(Category);

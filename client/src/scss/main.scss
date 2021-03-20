@@ -24,11 +24,21 @@ body {
   width: 90%;
   margin: auto;
 }
+.container2 {
+  width: 80%;
+  margin: auto;
+}
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.spaceOut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .simplebar-scrollbar::before {
@@ -37,13 +47,6 @@ body {
 
 .danger {
   background: $danger;
-}
-
-#toast-container {
-  top: auto !important;
-  right: auto !important;
-  bottom: 10%;
-  left: 7%;
 }
 
 .auth {
@@ -112,7 +115,7 @@ body {
     }
   }
 
-  .cart {
+  .cartAmount {
     color: #fff;
     background: $secondary-color;
     height: 40px;
@@ -121,6 +124,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 }
 
@@ -140,19 +144,15 @@ body {
   top: 0;
   right: 0;
   width: 380px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   background: $background3;
   height: 100vh;
-  padding-top: 30px;
 
   .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: $background4;
-    width: 80%;
+    width: 100%;
     border-radius: 24px;
     padding: 10px;
     box-sizing: border-box;
@@ -180,6 +180,73 @@ body {
       }
     }
   }
+
+  .body {
+    width: 100%;
+
+    h5 {
+      font-weight: 600;
+      color: $textColor;
+    }
+
+    i {
+      margin-top: 10px;
+      color: #000;
+      cursor: pointer;
+    }
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px 0px;
+    background: $background2;
+    width: 100%;
+
+    .cover {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid $secondary-color;
+      height: 50px;
+      border-radius: 12px;
+      input {
+        border: 0;
+        margin-bottom: -1px;
+        height: 46px;
+        border-bottom-left-radius: 12px;
+        padding: 0px 15px;
+      }
+
+      button {
+        padding: 0px 20px;
+        background: $secondary-color;
+        color: #fff;
+        border-radius: 12px;
+        border: 0;
+        height: 50px;
+      }
+    }
+    .complete {
+      padding: 15px 20px;
+      background: #56ccf2;
+      border: 0;
+      border-radius: 12px;
+      color: #fff;
+      margin: 0px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .cancel {
+      padding: 15px 20px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      background: #eee;
+    }
+  }
 }
 
 .addItem {
@@ -191,6 +258,15 @@ body {
   height: 100vh;
   box-sizing: border-box;
   // animation: slideIn 0.1s ease-in forwards;
+
+  .container {
+    position: relative;
+    .loader {
+      position: absolute;
+      top: -20px;
+      right: 0;
+    }
+  }
 
   form {
     .input-field {
@@ -209,6 +285,7 @@ body {
         cursor: pointer;
         &:first-child {
           color: #000;
+          background: #eee;
         }
         &:nth-child(2) {
           background: $secondary-color;
@@ -261,8 +338,6 @@ body {
         color: $secondary-color;
       }
     }
-    #search {
-    }
   }
 
   .other {
@@ -278,6 +353,7 @@ body {
         li {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           box-sizing: border-box;
           font-weight: 600;
           padding: 15px 10px;
@@ -305,6 +381,22 @@ body {
               opacity: 1;
             }
           }
+        }
+      }
+
+      button {
+        background: $background2;
+        padding: 12px;
+        border: 0px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        border-radius: 12px;
+        box-shadow: 0px 2px 12px rgba(66, 65, 65, 0.05);
+        cursor: pointer;
+
+        i {
+          color: $iconColor;
+          margin-left: 20px;
         }
       }
     }
@@ -348,6 +440,7 @@ body {
     left: 0;
     bottom: 0;
     padding: 10px;
+    padding-bottom: 20px;
     background: $background2;
     button {
       padding: 20px;
@@ -365,6 +458,15 @@ body {
       }
     }
   }
+
+  .container {
+    position: relative;
+    .loader {
+      position: absolute;
+      top: -25px;
+      right: 0;
+    }
+  }
 }
 
 .editItem {
@@ -376,6 +478,19 @@ body {
   height: 100vh;
   box-sizing: border-box;
   z-index: 2;
+
+  .container {
+    position: relative;
+    .loader {
+      position: absolute;
+      top: 5px;
+      right: 0;
+    }
+  }
+
+  h5 {
+    font-weight: 600;
+  }
 
   .input-field {
     margin-bottom: 40px;
@@ -400,6 +515,79 @@ body {
   color: #f9a109;
   cursor: pointer;
   max-width: 80px;
+}
+
+.cart {
+  margin-bottom: 120px;
+  p {
+    color: $secondaryText;
+    margin: 5px 0px;
+  }
+
+  .cartItem {
+    margin-bottom: 10px;
+    p {
+      margin: 7px 0px;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .name {
+      color: #000;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 3px;
+      align-items: center;
+    }
+
+    .quantity {
+      border-radius: 24px;
+      border: 2px solid $secondary-color;
+      color: $secondary-color;
+      font-size: 0.7rem;
+      font-weight: 600;
+      width: 50px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .edit {
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin-left: -5px;
+    animation: 0.4s ease-out fadeIn forwards;
+    .delete {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: $secondary-color;
+      box-sizing: border-box;
+      width: 35px;
+      margin-right: 2px;
+      i {
+        color: #fff;
+        margin: 0;
+      }
+    }
+    i {
+      color: $secondary-color;
+      margin: 0px;
+    }
+  }
 }
 
 .item-enter {

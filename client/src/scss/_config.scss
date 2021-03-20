@@ -5,6 +5,8 @@ $background4: #80485b;
 $secondary-color: #f9a109;
 $danger: #f44336;
 $iconColor: #c1c1c4;
+$textColor: #34333a;
+$secondaryText: #828282;
 
 //keyframes
 
@@ -23,5 +25,26 @@ $iconColor: #c1c1c4;
   }
   100% {
     right: -380px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    margin-left: -5px;
+  }
+  100% {
+    opacity: 1;
+
+    margin-left: 0px;
+  }
+}
+
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 70%;
   }
 }

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import SimpleBar from "simplebar-react";
 import { connect } from "react-redux";
 import { editItem } from "../../../actions/itemActions";
+import ButtonSpinner from "../../layout/ButtonSpinner";
 import PropTypes from "prop-types";
 
-const EditItem = ({ current, editItem }) => {
+const EditItem = ({ items: { current, loader2 }, editItem }) => {
   const [validate, setValidate] = useState(null);
   const [item, setItem] = useState({
     name: "",
@@ -57,9 +58,14 @@ const EditItem = ({ current, editItem }) => {
   };
 
   return (
-    <div className="editItem">
+    <div className="editItem" id="editItem">
       <SimpleBar style={{ maxHeight: "100%" }}>
         <div className="container">
+          {loader2 && loader2 === "edit" && (
+            <div className="loader">
+              <ButtonSpinner />
+            </div>
+          )}
           <div style={{ marginTop: "10px" }}></div>
           <span className="back" style={{ marginLeft: "0" }} onClick={back}>
             <i className="material-icons">arrow_back</i>back
@@ -117,7 +123,12 @@ const EditItem = ({ current, editItem }) => {
               </div>
             </div>
             <div className="center">
-              <button onClick={save}>Save</button>
+              <button
+                onClick={save}
+                disabled={loader2 && loader2 === "edit" ? true : false}
+              >
+                Save
+              </button>
             </div>
           </form>
         </div>
@@ -126,6 +137,11 @@ const EditItem = ({ current, editItem }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ current: state.items.current });
+EditItem.propTypes = {
+  items: PropTypes.object.isRequired,
+  editItem: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({ items: state.items });
 
 export default connect(mapStateToProps, { editItem })(EditItem);

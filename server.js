@@ -10,6 +10,8 @@ db();
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/items", require("./routes/items"));
+app.use("/api/cart", require("./routes/cart"));
+app.use("/api/history", require("./routes/history"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getHistory } from "../../../actions/cartActions";
 
-const History = () => {
+const History = ({ getHistory }) => {
+  useEffect(() => {
+    getHistory();
+  });
   return <div>History</div>;
 };
 
-export default History;
+export default connect(null, { getHistory })(History);

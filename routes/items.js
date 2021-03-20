@@ -5,11 +5,6 @@ const Category = require("../models/Category");
 const Item = require("../models/Item");
 
 const auth = require("../middleware/auth");
-const {
-  findOneAndUpdate,
-  findById,
-  findByIdAndUpdate,
-} = require("../models/Category");
 
 //add an item
 router.post("/", auth, async (req, res) => {
@@ -108,6 +103,26 @@ router.put("/:id", auth, async (req, res) => {
 
       return res.json({ categories, items });
     }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Server error" });
+  }
+});
+
+router.delete("/:id", auth, async (req, res) => {
+  const userId = req.user.id;
+  const id = req.params.id;
+
+  try {
+    const check = await Item.findById(id);
+    if (!check) {
+      return res.status(400).json({ msg: "Not a valid id" });
+    }
+    await Item.findByIdAndRemove(id);
+    const categories = await Category.find({ userId });
+    const items = await Item.find({ userId });
+
+    return res.json({ categories, items });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ msg: "Server error" });

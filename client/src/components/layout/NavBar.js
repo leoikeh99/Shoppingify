@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import logo from "../../images/logo.svg";
 
 const NavBar = ({ nav, setNav }) => {
+  const setSideBar = () => {
+    const sideBar = document.querySelector(".sideBar");
+
+    if (!sideBar.classList.contains("slideOut")) {
+      sideBar.classList.remove("slideIn");
+      sideBar.classList.add("slideOut");
+    } else {
+      sideBar.classList.remove("slideOut");
+      sideBar.classList.add("slideIn");
+    }
+  };
   return (
     <div className="nav">
       <div className="topImg">
@@ -22,7 +33,7 @@ const NavBar = ({ nav, setNav }) => {
           <i className="small material-icons">insert_chart</i>
         </li>
       </ul>
-      <div className="cart">
+      <div className="cartAmount" onClick={setSideBar}>
         <i className="tiny material-icons">shopping_cart</i>
       </div>
     </div>

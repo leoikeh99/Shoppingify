@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { addItem } from "../../../actions/itemActions";
 import { connect } from "react-redux";
+import ButtonSpinner from "../../layout/ButtonSpinner";
 import PropTypes from "prop-types";
 import SimpleBar from "simplebar-react";
 
-const AddItem = ({ anim1, setAnim1, addItem, items }) => {
+const AddItem = ({ anim1, setAnim1, addItem, items: { items, loader2 } }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [item, setItem] = useState({
     name: "",
@@ -22,8 +23,10 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
     const addItem = document.querySelector(".addItem");
     if (anim1) {
       addItem.style.animation = "slideIn 0.1s ease-in forwards";
-    } else {
-      addItem.style.animation = "slideOut 0.1s ease-in forwards";
+      console.log(typeof anim1);
+      if (typeof anim1 === "string") {
+        setItem({ ...item, category: anim1 });
+      }
     }
   }, [anim1]);
 
@@ -56,6 +59,11 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
     }
   };
 
+  const cancel = () => {
+    const addItem = document.querySelector(".addItem");
+    addItem.style.animation = "slideOut 0.1s ease-in forwards";
+  };
+
   useEffect(() => {}, [item, items]);
 
   const select = (suggestion) => {
@@ -64,9 +72,14 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
   };
 
   return (
-    <div className="addItem">
+    <div className="addItem" id="addItem">
       <SimpleBar style={{ maxHeight: "100%" }}>
         <div className="container">
+          {loader2 && loader2 === "add" && (
+            <div className="loader">
+              <ButtonSpinner />
+            </div>
+          )}
           <div style={{ marginTop: "35px" }}></div>
           <h5>Add a new item</h5>
           <form action="" onSubmit={(e) => e.preventDefault()}>
@@ -111,8 +124,8 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
                     required
                     onChange={onChange}
                     value={item.category}
+                    placeholder="Category"
                   />
-                  <label htmlFor="category">Category</label>
                 </div>
 
                 {suggestions.length !== 0 && (
@@ -127,8 +140,13 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
               </div>
             </div>
             <div className="buttons">
-              <button onClick={() => setAnim1(false)}>cancel</button>
-              <button onClick={save}>Save</button>
+              <button onClick={cancel}>cancel</button>
+              <button
+                onClick={save}
+                disabled={loader2 && loader2 === "add" ? true : false}
+              >
+                Save
+              </button>
             </div>
           </form>
 
@@ -140,13 +158,13 @@ const AddItem = ({ anim1, setAnim1, addItem, items }) => {
 };
 
 AddItem.propTypes = {
-  anim1: PropTypes.bool.isRequired,
   setAnim1: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
+  items: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  items: state.items.items,
+  items: state.items,
 });
 
 export default connect(mapStateToProps, { addItem })(AddItem);

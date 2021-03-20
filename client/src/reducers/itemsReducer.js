@@ -8,6 +8,8 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   EDIT_ITEM,
+  SET_LOADER2,
+  DELETE_ITEM,
 } from "../actions/types";
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
   filtered: null,
   status: null,
   loader: false,
+  loader2: false,
   current: null,
 };
 
@@ -52,6 +55,7 @@ export default (state = initialState, action) => {
               { name: action.payload.category, items: [action.payload] },
             ],
         status: { color: "#00bfa5", msg: "Item has been added" },
+        loader2: false,
       };
 
     case EDIT_ITEM:
@@ -67,6 +71,23 @@ export default (state = initialState, action) => {
           return obj;
         }),
         status: { color: "#00bfa5", msg: "Item has been updated" },
+        loader2: false,
+      };
+
+    case DELETE_ITEM:
+      return {
+        ...state,
+        items: action.payload.categories.map((category) => {
+          const obj = {
+            name: category.category,
+            items: action.payload.items.filter(
+              (item) => category.lowercase === item.category.toLowerCase()
+            ),
+          };
+          return obj;
+        }),
+        status: { color: "#00bfa5", msg: "Item has been deleted" },
+        loader2: false,
       };
 
     case FILTER_ITEMS:
@@ -89,6 +110,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loader: true,
+      };
+
+    case SET_LOADER2:
+      return {
+        ...state,
+        loader2: action.payload,
       };
 
     case CLEAR_FILTER:
