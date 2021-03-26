@@ -67,6 +67,20 @@
   .container2 {
     width: 90% !important;
   }
+
+  .historyItem {
+    flex-direction: column;
+    p {
+      margin: 5px 0px;
+    }
+
+    .date {
+      margin-right: 5px !important;
+    }
+    .status {
+      margin-right: 5px !important;
+    }
+  }
 }
 
 @media screen and (max-width: 340px) {
@@ -90,6 +104,12 @@
       }
     }
   }
+
+  .noItems {
+    img {
+      width: 200px !important;
+    }
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -106,6 +126,21 @@
     .other {
       .edit {
         opacity: 1 !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 625px) {
+  .stats {
+    .top {
+      flex-direction: column;
+      .item {
+        flex-basis: 100%;
+
+        &:nth-child(2) {
+          margin-top: 20px;
+        }
       }
     }
   }

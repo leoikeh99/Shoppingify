@@ -10,14 +10,22 @@ import EditItem from "./items/EditItem";
 import CartOptions from "./sidebar/cart/CartOptions";
 import CancelCart from "./sidebar/cart/CancelCart";
 import { getUser } from "../../actions/authActions";
-import { clearStatus } from "../../actions/itemActions";
-import { clearStatus2 } from "../../actions/cartActions";
+import { clearStatus, getItems } from "../../actions/itemActions";
+import { clearStatus2, getHistory } from "../../actions/cartActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import SimpleBar from "simplebar-react";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const Home = ({ getUser, clearStatus, status, status2 }) => {
+const Home = ({
+  user,
+  getUser,
+  clearStatus,
+  status,
+  status2,
+  getHistory,
+  getItems,
+}) => {
   const [nav, setNav] = useState("items");
   const [anim1, setAnim1] = useState(false);
 
@@ -25,6 +33,14 @@ const Home = ({ getUser, clearStatus, status, status2 }) => {
     getUser();
     //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      getHistory();
+      getItems();
+    }
+    //eslint-disable-next-line
+  }, [user]);
 
   useEffect(() => {
     if (status) {
@@ -48,6 +64,7 @@ const Home = ({ getUser, clearStatus, status, status2 }) => {
 
       clearStatus2();
     }
+    //eslint-disable-next-line
   }, [status, status2]);
 
   return (
@@ -80,6 +97,8 @@ Home.propTypes = {
   user: PropTypes.object,
   getUser: PropTypes.func.isRequired,
   clearStatus: PropTypes.func.isRequired,
+  getHistory: PropTypes.func.isRequired,
+  getItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -88,4 +107,9 @@ const mapStateToProps = (state) => ({
   status2: state.cart.status2,
 });
 
-export default connect(mapStateToProps, { getUser, clearStatus })(Home);
+export default connect(mapStateToProps, {
+  getUser,
+  clearStatus,
+  getHistory,
+  getItems,
+})(Home);

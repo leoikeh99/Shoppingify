@@ -21,7 +21,7 @@ const initialState = {
   current: null,
 };
 
-export default (state = initialState, action) => {
+const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ITEMS:
       return {
@@ -146,3 +146,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default itemsReducer;

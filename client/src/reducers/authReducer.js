@@ -17,7 +17,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH:
       localStorage.setItem("token", action.payload.token);
@@ -74,3 +74,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default authReducer;

@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from "react";
 import Category from "./Category";
 import Spinner from "../../layout/Spinner";
 import {
-  getItems,
   filterItems,
   clearFilter,
   setCurrent,
@@ -12,7 +11,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const Items = ({
-  getItems,
   items: { items, filtered, loader },
   filterItems,
   clearFilter,
@@ -20,8 +18,8 @@ const Items = ({
   setAnim1,
 }) => {
   useEffect(() => {
-    getItems();
     clearFilter();
+    //eslint-disable-next-line
   }, []);
 
   const search = (e) => {
@@ -54,6 +52,15 @@ const Items = ({
           </div>
 
           <div className="other">
+            {items.length === 0 && (
+              <button
+                className="button spaceOut"
+                style={{ marginTop: "30px" }}
+                onClick={() => setAnim1(true)}
+              >
+                Add item <i className="material-icons"> add </i>
+              </button>
+            )}
             {!filtered ? (
               items.map((item) => (
                 <Category
@@ -87,7 +94,6 @@ const Items = ({
 };
 
 Items.propTypes = {
-  getItems: PropTypes.func.isRequired,
   items: PropTypes.object,
   filterItems: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
@@ -97,7 +103,6 @@ Items.propTypes = {
 const mapStateToProps = (state) => ({ items: state.items });
 
 export default connect(mapStateToProps, {
-  getItems,
   filterItems,
   clearFilter,
   setCurrent,

@@ -2,6 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import bottle from "../../../images/bottle.svg";
 import Cart from "./cart/Cart";
 import SimpleBar from "simplebar-react";
+import Spinner from "../../layout/Spinner";
+import ButtonSpinner from "../../layout/ButtonSpinner";
+import image from "../../../images/shopping.svg";
 import {
   saveCart,
   getCart,
@@ -13,7 +16,7 @@ import PropTypes from "prop-types";
 
 const SideBar = ({
   setAnim1,
-  cart: { unsavedCart, toggle, savedCart },
+  cart: { unsavedCart, toggle, savedCart, loader, loader3 },
   saveCart,
   getCart,
   setToggle,
@@ -36,10 +39,12 @@ const SideBar = ({
     if (unsavedCart) {
       setName(unsavedCart.name);
     }
+    //eslint-disable-next-line
   }, [unsavedCart]);
 
   useEffect(() => {
     getCart();
+    //eslint-disable-next-line
   }, []);
   return (
     <div className="sideBar" id="sideBar">
@@ -58,7 +63,11 @@ const SideBar = ({
 
           <div className="body">
             <div className="spaceOut" style={{ padding: "5px 0px" }}>
-              <h5>{unsavedCart.name}</h5>
+              {toggle.mode === "saved" && savedCart.items.length !== 0 ? (
+                <h5>{savedCart.name}</h5>
+              ) : toggle.mode !== "saved" && unsavedCart.items.length !== 0 ? (
+                <h5>{unsavedCart.name}</h5>
+              ) : null}
               {toggle.mode === "saved" && savedCart.items.length !== 0 ? (
                 <i
                   className="material-icons"
@@ -81,13 +90,36 @@ const SideBar = ({
                 )
               ) : null}
             </div>
-            <Cart />
+
+            {toggle.mode === "saved" &&
+            savedCart.items.length === 0 &&
+            !loader ? (
+              <div className="noItems">
+                <p>No items</p>
+                <img src={image} alt="" />
+              </div>
+            ) : (
+              <Fragment>
+                {loader ? (
+                  <div className="center mt-2">
+                    <Spinner />
+                  </div>
+                ) : (
+                  <Cart />
+                )}
+              </Fragment>
+            )}
           </div>
         </div>
       </SimpleBar>
       {toggle.mode !== "saved" && unsavedCart.items.length !== 0 ? (
         <div className="bottom">
           <div className="container2">
+            {loader3 && (
+              <div className="loader">
+                <ButtonSpinner small={true} />{" "}
+              </div>
+            )}
             <form action="" onSubmit={(e) => e.preventDefault()}>
               <div className="cover">
                 <input
@@ -104,13 +136,25 @@ const SideBar = ({
       ) : toggle.mode === "saved" && savedCart.items.length !== 0 ? (
         <div className="bottom">
           <div className="container2">
+            {loader3 && (
+              <div className="loader">
+                <ButtonSpinner />
+              </div>
+            )}
             <div className="center">
-              <button className="cancel">
-                <a className="modal-trigger" href="#cancel">
+              <button className="cancel" disabled={loader3}>
+                <a
+                  className="modal-trigger"
+                  href={`${!loader3 ? "#cancel" : "#!"}`}
+                >
                   Cancel
                 </a>
               </button>
-              <button className="complete" onClick={() => done(true)}>
+              <button
+                className="complete"
+                onClick={() => done(true)}
+                disabled={loader3}
+              >
                 Complete
               </button>
             </div>

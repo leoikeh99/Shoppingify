@@ -14,6 +14,10 @@ const hisorySchema = mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
     items: [
       {
         name: {

@@ -5,8 +5,10 @@ $background4: #80485b;
 $secondary-color: #f9a109;
 $danger: #f44336;
 $iconColor: #c1c1c4;
+$iconColor2: #f9a109;
 $textColor: #34333a;
 $secondaryText: #828282;
+$blue-color: #56ccf2;
 
 //keyframes
 
@@ -37,14 +39,5 @@ $secondaryText: #828282;
     opacity: 1;
 
     margin-left: 0px;
-  }
-}
-
-@keyframes strike {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 70%;
   }
 }

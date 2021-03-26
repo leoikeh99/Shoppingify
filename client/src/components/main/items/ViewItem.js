@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import SimpleBar from "simplebar-react";
-import { deleteItem, addItem } from "../../../actions/itemActions";
+import { deleteItem } from "../../../actions/itemActions";
 import { addToCart } from "../../../actions/cartActions";
 import ButtonSpinner from "../../layout/ButtonSpinner";
 import { connect } from "react-redux";
@@ -15,6 +15,7 @@ const ViewItem = ({ items: { current, loader2 }, deleteItem, addToCart }) => {
       viewItem.style.right = "-380px";
       viewItem.style.animation = "none";
     }
+    //eslint-disable-next-line
   }, [current]);
 
   const add = () => {

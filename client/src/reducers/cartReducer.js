@@ -2,17 +2,21 @@ import {
   ADD_TO_CART,
   CLEAR_STATUS,
   DELETE_FROM_CART,
+  DELETE_HISTORY,
   FINISH_CART,
   GET_CART,
   GET_HISTORY,
   REMOVE_FROM_CART,
   SAVE_CART,
   SET_CLEARED,
+  SET_LOADER,
+  SET_LOADER3,
   SET_TOGGLE,
 } from "../actions/types";
 
 const initialState = {
   loader: false,
+  loader3: false,
   savedCart: { name: "Shopping List", items: [] },
   unsavedCart: { name: "Shopping List", items: [] },
   toggle: { mode: "saved", changes: false },
@@ -20,7 +24,7 @@ const initialState = {
   history: [],
 };
 
-export default (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return {
@@ -76,6 +80,7 @@ export default (state = initialState, action) => {
         savedCart: action.payload,
         status2: { color: "#00bfa5", msg: "Saved successfully" },
         toggle: { mode: "saved", changes: false },
+        loader3: false,
       };
 
     case GET_CART:
@@ -87,6 +92,7 @@ export default (state = initialState, action) => {
         savedCart: action.payload.name
           ? action.payload
           : { name: "Shopping List", items: [] },
+        loader: false,
       };
 
     case FINISH_CART: {
@@ -100,6 +106,8 @@ export default (state = initialState, action) => {
             ? "Completed successfully"
             : "Shopping list cancelled",
         },
+        history: [...state.history, action.payload],
+        loader3: false,
       };
     }
 
@@ -107,6 +115,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         history: action.payload,
+        loader: false,
+      };
+
+    case DELETE_HISTORY:
+      return {
+        ...state,
+        history: state.history.map((val) =>
+          val._id === action.payload._id ? action.payload : val
+        ),
+        status2: { color: "#00bfa5", msg: "Deleted successfully" },
       };
 
     case SET_TOGGLE:
@@ -129,6 +147,18 @@ export default (state = initialState, action) => {
         toggle: { mode: "unsaved", changes: true },
       };
 
+    case SET_LOADER:
+      return {
+        ...state,
+        loader: true,
+      };
+
+    case SET_LOADER3:
+      return {
+        ...state,
+        loader3: true,
+      };
+
     case CLEAR_STATUS:
       return {
         ...state,
@@ -138,3 +168,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default cartReducer;

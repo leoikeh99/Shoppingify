@@ -19,12 +19,6 @@
     opacity: 1;
     margin-left: 0px; } }
 
-@keyframes strike {
-  0% {
-    width: 0; }
-  100% {
-    width: 70%; } }
-
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6586,7 +6580,15 @@ input[type=range]::-ms-thumb {
   .main {
     padding-left: 48px !important; }
   .container2 {
-    width: 90% !important; } }
+    width: 90% !important; }
+  .historyItem {
+    flex-direction: column; }
+    .historyItem p {
+      margin: 5px 0px; }
+    .historyItem .date {
+      margin-right: 5px !important; }
+    .historyItem .status {
+      margin-right: 5px !important; } }
 
 @media screen and (max-width: 340px) {
   #sideBar,
@@ -6599,7 +6601,9 @@ input[type=range]::-ms-thumb {
   .sideBar .top button {
     padding: 10px 20px !important; }
   .sideBar .top .image {
-    margin-left: -10px; } }
+    margin-left: -10px; }
+  .noItems img {
+    width: 200px !important; } }
 
 @media screen and (min-width: 990px) {
   #toast-container {
@@ -6611,6 +6615,14 @@ input[type=range]::-ms-thumb {
 @media screen and (max-width: 550px) {
   .itemsView .other .edit {
     opacity: 1 !important; } }
+
+@media screen and (max-width: 625px) {
+  .stats .top {
+    flex-direction: column; }
+    .stats .top .item {
+      flex-basis: 100%; }
+      .stats .top .item:nth-child(2) {
+        margin-top: 20px; } }
 
 body {
   background: #fafafe;
@@ -6684,10 +6696,11 @@ body {
       cursor: pointer; }
       .nav ul li i {
         font-size: 1.75rem; }
-      .nav ul li:hover span {
+      .nav ul li:hover .tab,
+      .nav ul li:hover .name {
         opacity: 1;
         transition: ease-in opacity 0.2s; }
-      .nav ul li span {
+      .nav ul li .tab {
         position: absolute;
         top: 0;
         left: 0;
@@ -6697,6 +6710,28 @@ body {
         border-bottom-right-radius: 4px;
         background: #f9a109;
         opacity: 0; }
+      .nav ul li span.name {
+        position: absolute;
+        background: #454545;
+        left: 60px;
+        z-index: inherit;
+        font-size: 0.7rem;
+        padding: 2px 5px;
+        box-sizing: border-box;
+        color: #fff;
+        border-radius: 5px;
+        display: flex;
+        z-index: 2;
+        opacity: 0; }
+        .nav ul li span.name span {
+          position: relative; }
+          .nav ul li span.name span i {
+            font-size: 1.5rem;
+            color: #454545;
+            position: absolute;
+            left: -17.5px;
+            transform: rotate(90deg);
+            top: -4px; }
       .nav ul li .show {
         opacity: 1; }
   .nav .cartAmount {
@@ -6708,7 +6743,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative; }
+    .nav .cartAmount span {
+      border-radius: 5px;
+      background: #f44336;
+      font-size: 0.8rem;
+      height: 16px;
+      width: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -2px;
+      right: -2px; }
 
 .active2 {
   border-left: 5px solid #f9a109; }
@@ -6788,7 +6836,8 @@ body {
         color: #fff;
         border-radius: 12px;
         border: 0;
-        height: 50px; }
+        height: 50px;
+        cursor: pointer; }
     .sideBar .bottom .complete {
       padding: 15px 20px;
       background: #56ccf2;
@@ -6805,6 +6854,25 @@ body {
       cursor: pointer;
       font-weight: 600;
       background: #eee; }
+    .sideBar .bottom .container2 {
+      position: relative; }
+      .sideBar .bottom .container2 .loader {
+        position: absolute;
+        top: -10px;
+        right: -30px; }
+  .sideBar .noItems {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px; }
+    .sideBar .noItems p {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600; }
+    .sideBar .noItems img {
+      width: 250px; }
 
 .addItem {
   position: fixed;
@@ -6911,6 +6979,19 @@ body {
     .itemsView .other .category button i {
       color: #c1c1c4;
       margin-left: 20px; }
+
+.itemsView .button {
+  background: #ffffff;
+  padding: 12px;
+  border: 0px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 2px 12px rgba(66, 65, 65, 0.05);
+  cursor: pointer; }
+  .itemsView .button i {
+    color: #c1c1c4;
+    margin-left: 20px; }
 
 .viewItem {
   position: fixed;
@@ -7057,6 +7138,99 @@ body {
     .cart .edit i {
       color: #f9a109;
       margin: 0px; }
+
+.history h5 {
+  font-weight: 600;
+  margin-bottom: 15px; }
+
+.history .topDate {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 15px; }
+
+.history .historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 12px rgba(66, 65, 65, 0.05);
+  padding: 5px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  cursor: pointer; }
+
+.history p {
+  font-weight: 500; }
+
+.history .date {
+  color: #c1c1c4;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px; }
+  .history .date i {
+    margin-right: 5px; }
+
+.history .status {
+  padding: 0px 5px;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  margin-right: 20px; }
+
+.history .blueStatus {
+  color: #56ccf2;
+  border: 1px solid #56ccf2; }
+
+.history .redStatus {
+  color: #f44336;
+  border: 1px solid #f44336; }
+
+.history .iconColor {
+  color: #f9a109; }
+
+.history .category {
+  margin-bottom: 45px; }
+  .history .category h6 {
+    font-weight: 600; }
+  .history .category ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px; }
+    .history .category ul li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 15px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0px 2px 12px rgba(66, 65, 65, 0.05); }
+      .history .category ul li span {
+        font-size: 0.85rem;
+        color: #f9a109; }
+
+.progressBar .cover {
+  width: 100%;
+  height: 7px;
+  border-radius: 4px;
+  background: #e0e0e0; }
+  .progressBar .cover .progress1 {
+    background: #56ccf2;
+    border-radius: 4px;
+    height: 7px;
+    width: 0;
+    transition: width ease-in 0.3s; }
+
+.stats .top {
+  display: flex;
+  justify-content: space-between; }
+  .stats .top .item {
+    flex-basis: 46%; }
+    .stats .top .item h5 {
+      font-weight: 600; }
+
+#tabs .indicator {
+  background-color: #f9a109; }
 
 .item-enter {
   opacity: 0; }

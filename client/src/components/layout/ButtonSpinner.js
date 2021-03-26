@@ -1,10 +1,13 @@
 import React from "react";
 
-const ButtonSpinner = () => {
+const ButtonSpinner = ({ small }) => {
   return (
     <div
       className="preloader-wrapper big active"
-      style={{ width: "30px", height: "30px" }}
+      style={{
+        width: small ? "21px" : "30px",
+        height: small ? "21px" : "30px",
+      }}
     >
       <div className="spinner-layer">
         <div className="circle-clipper left">

@@ -4,12 +4,15 @@ import {
   ADD_TO_CART,
   CLEAR_STATUS,
   DELETE_FROM_CART,
+  DELETE_HISTORY,
   FINISH_CART,
   GET_CART,
   GET_HISTORY,
   REMOVE_FROM_CART,
   SAVE_CART,
   SET_CLEARED,
+  SET_LOADER,
+  SET_LOADER3,
   SET_TOGGLE,
 } from "./types";
 
@@ -32,6 +35,7 @@ export const saveCart = (cart) => async (dispatch) => {
 
   const config = { headers: { "Content-Type": "application/json" } };
   try {
+    dispatch({ type: SET_LOADER3 });
     const res = await axios.post("/api/cart", cart, config);
     dispatch({ type: SAVE_CART, payload: res.data });
   } catch (err) {
@@ -45,6 +49,7 @@ export const getCart = () => async (dispatch) => {
   }
 
   try {
+    dispatch({ type: SET_LOADER });
     const res = await axios.get("/api/cart");
     dispatch({ type: GET_CART, payload: res.data });
   } catch (err) {
@@ -59,6 +64,7 @@ export const finishCart = (cart) => async (dispatch) => {
 
   const config = { headers: { "Content-Type": "application/json" } };
   try {
+    dispatch({ type: SET_LOADER3 });
     const res = await axios.post("/api/history", cart, config);
     dispatch({ type: FINISH_CART, payload: res.data });
   } catch (err) {
@@ -72,8 +78,22 @@ export const getHistory = () => async (dispatch) => {
   }
 
   try {
+    dispatch({ type: SET_LOADER });
     const res = await axios.get("/api/history");
     dispatch({ type: GET_HISTORY, payload: res.data });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteHistory = (id) => async (dispatch) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+
+  try {
+    const res = await axios.delete(`/api/history/${id}`);
+    dispatch({ type: DELETE_HISTORY, payload: res.data });
   } catch (err) {
     console.error(err);
   }

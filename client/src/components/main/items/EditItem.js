@@ -92,6 +92,7 @@ const EditItem = ({ items: { current, loader2 }, editItem }) => {
                   value={!item.note ? "" : item.note}
                   placeholder="Note (optional)"
                   onChange={onChange}
+                  maxLength={200}
                 />
               </div>
               <div className="input-field">

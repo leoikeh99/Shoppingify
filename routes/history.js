@@ -31,4 +31,20 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+router.delete("/:id", auth, async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await History.findByIdAndUpdate(id, {
+      $set: { deleted: true },
+    });
+
+    const history = await History.findById(id);
+    res.json(history);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Server error" });
+  }
+});
+
 module.exports = router;

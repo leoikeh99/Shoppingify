@@ -28,6 +28,7 @@ const AddItem = ({ anim1, setAnim1, addItem, items: { items, loader2 } }) => {
         setItem({ ...item, category: anim1 });
       }
     }
+    //eslint-disable-next-line
   }, [anim1]);
 
   const onChange = (e) => {
@@ -62,6 +63,7 @@ const AddItem = ({ anim1, setAnim1, addItem, items: { items, loader2 } }) => {
   const cancel = () => {
     const addItem = document.querySelector(".addItem");
     addItem.style.animation = "slideOut 0.1s ease-in forwards";
+    setAnim1(false);
   };
 
   useEffect(() => {}, [item, items]);
