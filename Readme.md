@@ -28,6 +28,7 @@
 
 - [Overview](#overview)
 - [Built With](#built-with)
+- [Frameworks](#Frameworks-and-Libraries-used)
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
@@ -44,6 +45,17 @@
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
+- [Node.js](https://nodejs.org/en/)
+- [Materialize.css](https://materializecss.com/)
+- [MongoDb](https://www.mongodb.com/)
+
+### Frameworks and Libraries used
+
+- Express.js (Nodejs framework)
+- Mongoosejs
+- React-charts-2
+- react-transition-group
+- simplebar-react
 
 ## Features
 
