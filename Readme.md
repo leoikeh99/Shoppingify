@@ -96,5 +96,5 @@ $ npm dev
 
 ## Contact
 
-- GitHub [@your-username](https://github.com/leoikeh99/Shoppingify)
-- Twitter [@your-twitter](https://twitter.com/wazza_dev)
+- GitHub [@leoikeh99](https://github.com/leoikeh99/Shoppingify)
+- Twitter [@wazzadev](https://twitter.com/wazza_dev)
